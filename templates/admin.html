@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin dashboard | CampusConnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='admin.js') }}" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">C</span> CampusConnect</a><div class="header-right"><span class="muted">Signed in as {{ username }}</span><form method="post" action="{{ url_for('logout') }}"><button class="button button-light" type="submit">Log out</button></form></div></header>
+  <main class="admin-main">
+    <section class="admin-heading"><p class="eyebrow">CONTROL CENTER</p><h1>Event dashboard</h1><p class="muted">Manage events and review student registrations.</p></section>
+    <p id="admin-message" class="form-message" role="status" aria-live="polite"></p>
+    <section class="admin-stats"><div class="stat-card"><span>Events</span><strong id="event-total">—</strong></div><div class="stat-card"><span>Registrations</span><strong id="registration-total">—</strong></div></section>
+    <section class="admin-section">
+      <div class="section-heading"><div><p class="eyebrow">CAMPUS CALENDAR</p><h2>Manage events</h2></div></div>
+      <form id="event-form" class="event-form">
+        <div class="field"><label for="event-title">Event title</label><input id="event-title" required maxlength="120"></div>
+        <div class="field"><label for="event-date">Date</label><input id="event-date" type="date" required></div>
+        <div class="field"><label for="event-venue">Venue</label><input id="event-venue" required maxlength="120"></div>
+        <div class="field field-wide"><label for="event-description">Description</label><input id="event-description" required maxlength="500"></div>
+        <button class="button button-primary" type="submit">Add event</button>
+      </form>
+      <div id="event-list" class="admin-event-list"></div>
+    </section>
+    <section class="admin-section">
+      <div class="section-heading"><div><p class="eyebrow">STUDENT SIGN-UPS</p><h2>Registrations</h2></div><button id="refresh-registrations" class="button button-light" type="button">Refresh</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Student</th><th>Contact</th><th>Event</th><th>Registered at (UTC)</th></tr></thead><tbody id="registrations-body"><tr><td colspan="4">Loading registrations…</td></tr></tbody></table></div>
+    </section>
+  </main>
+</body>
+</html>

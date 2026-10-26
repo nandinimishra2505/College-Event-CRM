@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin login | CampusConnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+  <header class="site-header"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">C</span> CampusConnect</a><a href="{{ url_for('index') }}">← Back to events</a></header>
+  <main class="login-wrap">
+    <div class="login-card">
+      <p class="eyebrow">ADMINISTRATION</p><h1>Welcome back.</h1><p class="muted">Sign in to manage campus events and registrations.</p>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}<p class="alert {{ category }}">{{ message }}</p>{% endfor %}
+      {% endwith %}
+      <form method="post" action="{{ url_for('login') }}">
+        <label for="username">Username</label><input id="username" name="username" autocomplete="username" required>
+        <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button button-primary full-width" type="submit">Sign in</button>
+      </form>
+      <p class="login-note">Demo defaults if you have not configured environment variables: <code>admin</code> / <code>admin123</code>.</p>
+    </div>
+  </main>
+</body>
+</html>
